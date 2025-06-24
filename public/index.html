@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Real-time chat room with modern UI" />
+  <meta name="theme-color" content="#667eea" />
+  <title>Modern Chat Room</title>
+
+  <!-- Fonts and Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f4f6fa;
+      color: #333;
+    }
+    #appContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    #loginScreen,
+    #chatScreen {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 500px;
+      transition: all 0.3s ease;
+    }
+    #chatScreen.hidden,
+    #loginScreen.hidden {
+      display: none;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.8rem;
+      margin: 1rem 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    button {
+      background: #667eea;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    #chatHeader {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    #mainChatArea {
+      display: flex;
+      gap: 1rem;
+    }
+    #userList {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      width: 30%;
+      background: #eef2ff;
+      border-radius: 8px;
+      overflow-y: auto;
+      max-height: 400px;
+    }
+    #userList li {
+      padding: 0.5rem;
+      border-bottom: 1px solid #ddd;
+    }
+    #messages {
+      width: 70%;
+      height: 400px;
+      overflow-y: auto;
+      background: #fdfdfd;
+      padding: 1rem;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+    }
+    .message {
+      background: #e0e7ff;
+      padding: 0.7rem;
+      margin-bottom: 0.5rem;
+      border-radius: 6px;
+      max-width: 80%;
+    }
+    .message.own {
+      background: #c3dafe;
+      align-self: flex-end;
+    }
+    .message-header {
+      font-size: 0.75rem;
+      color: #666;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.2rem;
+    }
+    .message-content {
+      font-size: 0.95rem;
+    }
+    .system-message {
+      text-align: center;
+      color: #999;
+      font-style: italic;
+      margin: 0.8rem 0;
+    }
+    #inputArea {
+      display: flex;
+      margin-top: 1rem;
+    }
+    #messageInput {
+      flex: 1;
+      padding: 0.7rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    #sendBtn {
+      margin-left: 0.5rem;
+    }
+    #typingIndicator {
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      color: #777;
+      height: 1rem;
+    }
+  </style>
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <div id="appContainer">
+    <!-- Login Screen -->
+    <div id="loginScreen">
+      <h1>Chat Room</h1>
+      <p>Join the conversation with real-time messaging</p>
+      <input type="text" id="usernameInput" placeholder="Enter your username" maxlength="20" autocomplete="off" />
+      <button id="joinBtn">Join Chat</button>
+    </div>
+
+    <!-- Chat Screen -->
+    <div id="chatScreen" class="hidden">
+      <div id="chatHeader">
+        <span id="currentUser"></span>
+        <button id="leaveBtn">Leave</button>
+      </div>
+      <div id="mainChatArea">
+        <ul id="userList"></ul>
+        <div id="messages"></div>
+      </div>
+      <div id="inputArea">
+        <input type="text" id="messageInput" placeholder="Type a message..." maxlength="500" autocomplete="off" />
+        <button id="sendBtn">Send</button>
+      </div>
+      <div id="typingIndicator"></div>
+    </div>
+  </div>
+
+  <!-- Messages container in your HTML remains the same -->
+<div id="messages"></div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
