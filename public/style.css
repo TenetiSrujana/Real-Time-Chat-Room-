@@ -1,0 +1,263 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  height: 90vh;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Login screen */
+#loginScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 40px;
+}
+
+#loginScreen h1 {
+  font-size: 2.5rem;
+  color: #4f46e5;
+  margin-bottom: 10px;
+}
+
+#loginScreen p {
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+
+#loginScreen input {
+  padding: 12px 16px;
+  width: 100%;
+  max-width: 300px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+#loginScreen button {
+  padding: 12px 20px;
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease-in-out;
+}
+
+#loginScreen button:hover {
+  background-color: #4338ca;
+}
+
+/* Chat screen */
+#chatScreen {
+  display: none;
+  flex-direction: column;
+  height: 100%;
+}
+
+#chatScreen.active {
+  display: flex;
+}
+
+.chat-header {
+  padding: 15px 20px;
+  background-color: #4f46e5;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 25%;
+  background-color: #eef2ff;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.sidebar h3 {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  color: #4f46e5;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+  padding: 6px;
+  background: #e0e7ff;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.main-chat {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fafafa;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+.message {
+  background: #e0e7ff;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  max-width: 70%;
+  word-wrap: break-word;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.message.own {
+  background: #667eea;
+  color: white;
+  margin-left: auto;
+}
+
+.message .message-header {
+  font-size: 0.8rem;
+  color: #666;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.message .message-content {
+  white-space: pre-wrap;
+}
+
+.message .edit-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  color: #444;
+  font-size: 0.75rem;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.message:hover .edit-btn {
+  opacity: 1;
+}
+
+.message .edited {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: #d1d5db;
+  margin-left: 8px;
+  user-select: none;
+  vertical-align: middle;
+}
+
+/* INLINE EDIT - ✨ NO BOX INPUT ✨ */
+.edit-input {
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  display: inline;
+  width: auto;
+}
+
+/* Hide edit buttons if not needed */
+.edit-actions {
+  margin-top: 4px;
+  text-align: right;
+}
+
+.edit-actions button {
+  margin-left: 8px;
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border-radius: 4px;
+  border: none;
+  background: #667eea;
+  color: white;
+  transition: background-color 0.2s ease;
+}
+
+.edit-actions button.cancel-btn {
+  background: #ccc;
+  color: #333;
+}
+
+/* Input area */
+.input-area {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.input-area button {
+  padding: 12px 20px;
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.input-area button:hover {
+  background-color: #4338ca;
+}
+
+.typing-indicator {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 8px;
+}
